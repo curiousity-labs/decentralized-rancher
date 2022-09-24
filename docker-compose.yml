@@ -1,0 +1,6 @@
+version: '3'
+services:
+  blockchain:
+    build: rancher-contracts
+    ports:
+      - "8545:8545"
