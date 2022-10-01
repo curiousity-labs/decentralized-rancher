@@ -1,14 +1,11 @@
 import { ChakraProvider } from "@chakra-ui/react"
-import { RainbowKitProvider } from "@rainbow-me/rainbowkit"
-import { WagmiConfig } from "wagmi"
-import { chains, wagmiClient } from "./rainboxKit/wagmi.config"
+import { Web3Provider } from "@decent-org/wallet-provider"
+import { web3ProviderConfig } from "../config"
 
 export function DataProviders({ children }: { children: JSX.Element }) {
   return (
     <ChakraProvider>
-      <WagmiConfig client={wagmiClient}>
-        <RainbowKitProvider chains={chains}>{children}</RainbowKitProvider>
-      </WagmiConfig>
+      <Web3Provider config={web3ProviderConfig()}>{children}</Web3Provider>
     </ChakraProvider>
   )
 }
