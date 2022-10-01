@@ -6,7 +6,7 @@ import { theme } from "./chakraUI/theme"
 export function DataProviders({ children }: { children: JSX.Element }) {
   return (
     <ChakraProvider theme={theme}>
-      <Web3Provider config={web3ProviderConfig()}>{children}</Web3Provider>
+      <Web3Provider config={web3ProviderConfig}>{children}</Web3Provider>
     </ChakraProvider>
   )
 }
