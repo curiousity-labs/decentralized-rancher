@@ -1,12 +1,20 @@
 import { Box, Image, Text } from "@chakra-ui/react"
 import { useRancher } from "../../providers/rancher/hooks/useRancher"
 import noImage from "../../assets/images/no-image-icon-23.svg"
+import { useEffect } from "react"
+import { spawnCreate } from "../../features/monsters/spawn"
 
 const DisplayNFTs = () => {
   const {
     state: { nfts },
   } = useRancher()
 
+  useEffect(() => {
+    if (nfts.length) {
+      const newMob = spawnCreate(nfts[0])
+      console.log("🚀 ~ file: DisplayNFTs.tsx ~ line 15 ~ newMob", newMob)
+    }
+  }, [nfts])
   return (
     <Box display="flex" justifyContent="center">
       <Box
@@ -50,11 +58,15 @@ const DisplayNFTs = () => {
             </Box>
             <Box>
               <Box mb="4">
-                <Text fontSize="xs" fontWeight="thin" letterSpacing="wide">Contract Address</Text>
+                <Text fontSize="xs" fontWeight="thin" letterSpacing="wide">
+                  Contract Address
+                </Text>
                 <Text>{nft.contractAddress}</Text>
               </Box>
               <Box>
-                <Text fontSize="xs" fontWeight="thin" letterSpacing="wide">Token ID</Text>
+                <Text fontSize="xs" fontWeight="thin" letterSpacing="wide">
+                  Token ID
+                </Text>
                 <Text>{nft.tokenID}</Text>
               </Box>
             </Box>

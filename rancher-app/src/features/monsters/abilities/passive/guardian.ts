@@ -1,0 +1,2 @@
+// describe passive bonuses
+export {}
