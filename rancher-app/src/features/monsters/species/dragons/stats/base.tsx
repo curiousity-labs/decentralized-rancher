@@ -1,0 +1,11 @@
+import { NFTMonsterStats } from "../../../../../types";
+
+// base allocated points: 30 
+export const DRAGON_BASE_STATS: NFTMonsterStats = {
+  health: 8,
+  strength: 10,
+  defense: 5,
+  speed: 2,
+  special_attack: 3,
+  special_defense: 2,
+}
