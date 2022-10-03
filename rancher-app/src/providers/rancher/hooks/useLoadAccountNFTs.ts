@@ -8,6 +8,12 @@ import { retrieveERC721 } from '../../../services/opensea';
 
 export const useLoadAccountNFTs = (dispatch: React.Dispatch<RancherActionTypes>) => {
   const { state: { account } } = useWeb3Provider();
+
+  useEffect(() => {
+    if (!account) {
+      dispatch({ type: RancherActions.RESET })
+    }
+  }, [account, dispatch])
   useEffect(() => {
     const retrieveAccountNFTs = async (account: string) => {
       const eventNfts = await retrieveERC721TransferEvents(account);
@@ -30,7 +36,7 @@ export const useLoadAccountNFTs = (dispatch: React.Dispatch<RancherActionTypes>)
         mappedAssets.set(key, {
           contractAddress: nft.asset_contract.address,
           tokenID: nft.token_id || undefined,
-          tokenName: nft.asset_contract.name  || undefined,
+          tokenName: nft.asset_contract.name || undefined,
           tokenSymbol: nft.asset_contract.symbol || undefined,
           imageURL: nft.image_url || undefined,
           metadata: nft.traits

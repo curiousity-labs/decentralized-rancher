@@ -11,7 +11,10 @@ const initialState: RancherStore = {
 const reducer = (state: RancherStore, action: RancherActionTypes) => {
   switch (action.type) {
     case RancherActions.UPDATE_NFT: {
-      return { ...state, nfts: action.payload}
+      return { ...state, nfts: action.payload }
+    }
+    case RancherActions.RESET: {
+      return { ...initialState }
     }
   }
 }
