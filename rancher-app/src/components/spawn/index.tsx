@@ -1,20 +1,31 @@
-import { Box, Button, Image, Text } from "@chakra-ui/react"
+import { Box, Button, Text } from "@chakra-ui/react"
 import { useRancher } from "../../providers/rancher/hooks/useRancher"
-import noImage from "../../assets/images/no-image-icon-23.svg"
 import { useState } from "react"
-import { NonFungibleToken } from "../../types"
+import { NFTMonster, NonFungibleToken } from "../../types"
 import { spawnCreate } from "../../features/monsters/spawn"
+import NFTCard from "../nfts/NFTCard"
+import SpawnModal from "./SpawnModal"
 const Spawn = () => {
   const {
     state: { nfts },
   } = useRancher()
 
   const [selected, setSelected] = useState<NonFungibleToken>()
+  const [spawnedMonster, setSpawnMonster] = useState<NFTMonster>()
 
   const spawnNewCreate = () => {
     if (selected) {
-      const newMob = spawnCreate(selected)
+      setSpawnMonster(spawnCreate(selected))
     }
+  }
+
+  const closeModal = () => {
+    setSelected(undefined);
+    setSpawnMonster(undefined);
+  }
+
+  if (spawnedMonster) {
+    return <SpawnModal newMob={spawnedMonster} onClose={closeModal}/>
   }
   return (
     <Box p="8">
@@ -24,7 +35,9 @@ const Spawn = () => {
             Choose NFT
           </Text>
         </Box>
-        <Button isDisabled={!selected}>Spawn Creature</Button>
+        <Button isDisabled={!selected} onClick={spawnNewCreate}>
+          Spawn Creature
+        </Button>
       </Box>
       <Text fontSize="2xs" fontFamily="mono" letterSpacing="0.23px">
         ERC 721
@@ -39,65 +52,7 @@ const Spawn = () => {
       >
         <Box display="flex" flexWrap="wrap" justifyContent="space-around" w="fit-content" gap="2">
           {nfts.map((nft) => (
-            <Box
-              key={`${nft.contractAddress}:${nft.tokenID}`}
-              bg={
-                selected?.contractAddress === nft.contractAddress &&
-                selected?.tokenID === nft.tokenID
-                  ? "green.700"
-                  : "black"
-              }
-              rounded="lg"
-              py="4"
-              px="8"
-              my="4"
-              w="20rem"
-              onClick={() => setSelected(nft)}
-            >
-              <Box mb="4" textAlign="center">
-                <Text
-                  display="flex"
-                  justifyContent="center"
-                  fontSize="2xs"
-                  fontWeight="bold"
-                  letterSpacing="wide"
-                >
-                  {nft.tokenName}
-                </Text>
-                <Text
-                  display="flex"
-                  justifyContent="center"
-                  fontSize="2xs"
-                  fontWeight="semibold"
-                  letterSpacing="widest"
-                >
-                  {nft.tokenSymbol}
-                </Text>
-              </Box>
-
-              <Box display="flex" justifyContent="center" mb="8">
-                <Image src={nft.imageURL || noImage} w="10rem" maxWidth="24rem" />
-              </Box>
-
-              <Box>
-                <Box mb="4">
-                  <Text fontSize="2xs" fontWeight="thin" letterSpacing="wide">
-                    Contract Address
-                  </Text>
-                  <Text fontSize="xs" letterSpacing="wide">
-                    {nft.contractAddress}
-                  </Text>
-                </Box>
-                <Box>
-                  <Text fontSize="2xs" fontWeight="thin" letterSpacing="wide">
-                    Token ID
-                  </Text>
-                  <Text fontSize="xs" letterSpacing="wide">
-                    {nft.tokenID}
-                  </Text>
-                </Box>
-              </Box>
-            </Box>
+            <NFTCard key={`${nft.contractAddress}:${nft.tokenID}`} nft={nft} selected={selected} setSelected={setSelected} />
           ))}
         </Box>
       </Box>
