@@ -1,6 +1,6 @@
 function primary() {
   const disabled = {
-    bg: '',
+    bg: 'gray.500',
   }
 
   const loading = {
