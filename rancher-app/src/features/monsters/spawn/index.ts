@@ -15,6 +15,7 @@ export const spawnCreate = (nft: NonFungibleToken): NFTMonster => {
 
   // choose monster species
   const monsterSpecies = monsterSpeciesMapping[e ? b : c]
+
   // choose monster type
   const monsterType = monsterTypesMapping[e ? c : b]
 
