@@ -38,6 +38,7 @@ export const spawnCreate = (nft: NonFungibleToken): NFTMonster => {
   }).reduce((prev, cur) => ({ ...prev, ...cur }), {})
 
   return {
+    level: 1,
     image,
     species: monsterSpecies,
     type: monsterType,

@@ -4,16 +4,17 @@ export type Stats = 'health' | 'strength' | 'defense' | 'speed' | 'special_attac
 export type NFTMonsterStats = { [key in Stats | string]: number }
 
 export interface NFTMonster {
-  image: string,
-  type: NFTMonsterType,
-  species: NFTMonsterSpecies,
-  stats: NFTMonsterStats,
-  abilities: []
-  passives: []
+  level: number;
+  image: string;
+  type: NFTMonsterType;
+  species: NFTMonsterSpecies;
+  stats: NFTMonsterStats;
+  abilities: [];
+  passives: [];
 }
 
 export type TypeStats = {
-  [key: string]: NFTMonsterStats
+  [key: string]: NFTMonsterStats;
 }
 export type SpeciesData = {
   [key: string]: {
