@@ -2,7 +2,7 @@ import corsOptions from "cors";
 import express from "express";
 import http from "http";
 import morgan from "morgan";
-import config from "../config";
+import { config } from "../settings";
 
 export default class Application {
   public core: express.Application;

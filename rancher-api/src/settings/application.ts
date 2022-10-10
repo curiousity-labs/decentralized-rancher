@@ -1,7 +1,7 @@
 import { Config } from "../types";
 require("dotenv").config();
 
-const config: Config = {
+export const config: Config = {
   port: process.env.PORT!,
   isDev: process.env.NODE_ENV === 'development',
   infuraURL: `https://mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`,
@@ -14,16 +14,17 @@ const config: Config = {
     dialect: "postgres",
   },
   web3: {
-    chainId: process.env.LOCAL_PROVIDER_CHAIN_ID || "1",
-    network: process.env.LOCAL_PROVIDER_URL ? "localhost" : "mainnet",
     providerKeys: {
       infura: process.env.INFURA_API_KEY,
       alchemy: process.env.ALCHEMY_API_KEY,
       etherscan: process.env.ETHERSCAN_API_KEY,
     },
+    local: {
+      url: process.env.LOCAL_PROVIDER_URL,
+      chainID: process.env.LOCAL_CHAIN_ID
+    }
   },
 };
 
 console.info(`[${process.env.NODE_ENV}] environment`);
 
-export default config;

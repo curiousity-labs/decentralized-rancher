@@ -19,9 +19,11 @@ export interface DatabaseInitOptions {
 }
 
 export interface WebOptions {
-  chainId: string;
-  network: string;
   providerKeys: ProviderKeys;
+  local: {
+    url?: string,
+    chainID?: string,
+  }
 }
 
 export interface ProviderKeys {
