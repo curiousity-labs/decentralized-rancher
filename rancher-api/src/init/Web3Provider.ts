@@ -28,16 +28,12 @@ class Provider {
   }
 
   getProvider() {
-    try {
-      if (this.chainID) {
-        if (this.network === LOCAL_NETWORK.network) {
-          this.getLocalProvider()
-        } else {
-          this.getBaseProvider()
-        }
+    if (this.chainID) {
+      if (this.network === LOCAL_NETWORK.network) {
+        this.getLocalProvider()
+      } else {
+        this.getBaseProvider()
       }
-    } catch {
-      console.log(`[${this.network}] network is unavailable`)
     }
   }
 }
@@ -57,14 +53,16 @@ export class Web3Provider {
 
     const supportedChains: string[] = []
     const activeNetworks = new Map<string, Provider>()
-    providers.forEach((provider?: Provider) => {
-      if (!!provider && provider.chainID) {
-        supportedChains.push(provider.chainID)
-        activeNetworks.set(provider.chainID, provider)
+    await Promise.all(providers.map(async (provider: Provider) => {
+      if (provider.provider && provider.chainID) {
+        if (await provider.provider.detectNetwork().catch(() => console.log(`[${provider.network}] network is unavailable`))) {
+          supportedChains.push(provider.chainID)
+          activeNetworks.set(provider.chainID, provider)
+        }
       }
-      this.activeNetworks = activeNetworks
-      this.supportedChainIDs = supportedChains
-    })
+    }))
+    this.activeNetworks = activeNetworks
+    this.supportedChainIDs = supportedChains
   }
 }
 
