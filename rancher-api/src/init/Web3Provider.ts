@@ -1,6 +1,7 @@
 import { config } from './../settings/application';
 import { providers, getDefaultProvider } from "ethers";
 import { GOERLI_NETWORK, SEPOLIA_NETWORK, LOCAL_NETWORK } from "../settings";
+import { Application } from 'express';
 
 class Provider {
   public provider?: providers.BaseProvider | providers.JsonRpcProvider
@@ -43,7 +44,7 @@ export class Web3Provider {
   public activeNetworks: Map<string, Provider> = new Map();
   public supportedChainIDs: string[] = []
 
-  constructor() { }
+  constructor(private app: Application) { }
 
   async connect() {
     const providers =
@@ -63,6 +64,7 @@ export class Web3Provider {
     }))
     this.activeNetworks = activeNetworks
     this.supportedChainIDs = supportedChains
+    this.app.set('web3', this)
   }
 }
 
