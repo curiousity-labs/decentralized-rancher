@@ -8,9 +8,9 @@ import { Web3Provider } from "./init/Web3Provider";
   const app = application.core;
 
   new AppRouter(app);
-  const web3Provider = new Web3Provider();
+  
+  const web3Provider = new Web3Provider(app);
   await web3Provider.connect();
-  console.log("🚀 ~ file: index.ts ~ line 12 ~ web3Provider", web3Provider)
   
   application.initilizeServer();
   
