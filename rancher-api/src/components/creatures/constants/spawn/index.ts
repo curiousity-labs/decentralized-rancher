@@ -1,12 +1,12 @@
 import { monsterSpeciesMapping } from './../species/index';
-import { NonFungibleToken } from './../../../types/nft';
-import { NFTMonster } from './../../../types/monsters';
+// import { NonFungibleToken } from './../../../types/nft';
+// import { NFTMonster } from './../../../types/monsters';
 import { utils } from 'ethers';
 import nftMonsterTypesBonusStats, { monsterTypesMapping } from '../bonuses/types';
 import { nftMonsterSpeciesBaseStats } from '../species';
 
 
-export const spawnCreate = (nft: NonFungibleToken): NFTMonster => {
+export const spawnCreate = (nft: any): any => {
   const { contractAddress, tokenID } = nft;
   const salt = process.env.REACT_APP_SECRET_SALT
   
@@ -43,5 +43,5 @@ export const spawnCreate = (nft: NonFungibleToken): NFTMonster => {
     species: monsterSpecies,
     type: monsterType,
     stats
-  } as NFTMonster;
+  } as any;
 }

@@ -1,7 +1,10 @@
 import express from "express";
-import { Sequelize } from "sequelize";
-import { UserModel } from "../models/user";
+import { Model, ModelStatic, Sequelize } from "sequelize";
+import { CreatureModel } from "../models/creatures";
+import { CreatureStatusModel } from "../models/creatureStatuses";
+import { UserModel } from "../models/players";
 import { config } from "../settings";
+import { Creature, CreatureStatus, Player } from '../models/types';
 
 const associationOptions = (foreignKey: string) => ({
   sourceKey: "id",
@@ -9,27 +12,48 @@ const associationOptions = (foreignKey: string) => ({
   onDelete: "cascade",
 });
 
-export const defineAssociations = (sequelize: Sequelize) => {
-  const { User } = sequelize.models;
-};
+type DefineAssociationsFunc = (models: {
+  playerModel: ModelStatic<Model<Player>>,
+  creatureModel: ModelStatic<Model<Creature>>,
+  creatureStatusModel: ModelStatic<Model<CreatureStatus>>
+}) => void;
 
-export const syncModels = async (sequelize: Sequelize) => {
-  for (const Model in sequelize.models) {
-    await sequelize.models[Model].sync({ alter: true });
-  }
+const defineAssociations: DefineAssociationsFunc = ({
+  playerModel,
+  creatureModel,
+  creatureStatusModel
+}) => {
+  playerModel.hasOne(creatureModel, {
+    onDelete: "cascade"
+  })
+
+  creatureModel.belongsTo(playerModel, {
+    onDelete: "cascade"
+  })
+
+  creatureModel.hasMany(creatureStatusModel, {
+    onDelete: "cascade"
+  })
+
+  creatureStatusModel.belongsTo(creatureModel, {
+    onDelete: "cascade"
+  })
+
 };
 
 export async function modalsInit(sequelize: Sequelize) {
-  // define models
-  UserModel(sequelize)
+
+  const playerModel = UserModel(sequelize)
+  const creatureModel = CreatureModel(sequelize)
+  const creatureStatusModel = CreatureStatusModel(sequelize)
+
+  defineAssociations({
+    playerModel,
+    creatureModel,
+    creatureStatusModel
+  })
   // sync definitions
-  await syncModels(sequelize);
-
-  // define associations
-  defineAssociations(sequelize);
-
-  // sync associations
-  await syncModels(sequelize);
+  await sequelize.sync({ alter: true });
 }
 
 export default class Database {
