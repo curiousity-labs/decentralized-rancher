@@ -1,9 +1,9 @@
 import { Sequelize, DataTypes, Model } from "sequelize";
-import { CreatureStatus } from "./types";
+import { Status } from "./types";
 import { v4 as uuidv4 } from "uuid";
 
-export function CreatureStatusModel(sequelize: Sequelize) {
-  return sequelize.define<Model<CreatureStatus>>(
+export function StatusModel(sequelize: Sequelize) {
+  return sequelize.define<Model<Status>>(
     "CreatureStatuses",
     {
       id: {

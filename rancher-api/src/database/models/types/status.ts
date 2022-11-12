@@ -1,4 +1,4 @@
-export interface CreatureStatus {
+export interface Status {
   id: string,
   level: number,
   health: number,

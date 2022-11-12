@@ -1,7 +1,5 @@
-import { NFTMonsterStats } from "../../../../../types";
-
 // max allocated points: 5
-export const ROCK_BONUS_STATS: NFTMonsterStats = {
+export const ROCK_BONUS_STATS = {
   health: 2,
   strength: 1,
   defense: 3,

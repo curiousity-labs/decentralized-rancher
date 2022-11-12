@@ -1,9 +1,8 @@
-import { monsterSpeciesMapping } from './../species/index';
+// import { monsterSpeciesMapping } from './../species/index';
 // import { NonFungibleToken } from './../../../types/nft';
 // import { NFTMonster } from './../../../types/monsters';
 import { utils } from 'ethers';
-import nftMonsterTypesBonusStats, { monsterTypesMapping } from '../bonuses/types';
-import { nftMonsterSpeciesBaseStats } from '../species';
+// import { nftMonsterSpeciesBaseStats } from '../species';
 
 
 export const spawnCreate = (nft: any): any => {
@@ -14,10 +13,10 @@ export const spawnCreate = (nft: any): any => {
   const [a, b, c, d, e] = Array.from(String(s), num => Number(num))
 
   // choose monster species
-  const monsterSpecies = monsterSpeciesMapping[e ? b : c]
+  // const monsterSpecies = monsterSpeciesMapping[e ? b : c]
 
   // choose monster type
-  const monsterType = monsterTypesMapping[e ? c : b]
+  // const monsterType = monsterTypesMapping[e ? c : b]
 
   // choose starting passive (if any)
 
@@ -25,23 +24,23 @@ export const spawnCreate = (nft: any): any => {
 
   // stats
   // get base states
-  const { baseStats, image } = nftMonsterSpeciesBaseStats[monsterSpecies]
+  // const { baseStats, image } = nftMonsterSpeciesBaseStats[monsterSpecies]
   // get bonus states
-  const bonusStats = nftMonsterTypesBonusStats[monsterType]
+  // const bonusStats = nftMonsterTypesBonusStats[monsterType]
   // @todo allocate spawn stats
 
 
 
   // add all stats
-  const stats = Object.entries(baseStats).map(([key, value]) => {
-    return { [key]: value + bonusStats[key] }
-  }).reduce((prev, cur) => ({ ...prev, ...cur }), {})
+  // const stats = Object.entries(baseStats).map(([key, value]) => {
+  //   return { [key]: value + bonusStats[key] }
+  // }).reduce((prev, cur) => ({ ...prev, ...cur }), {})
 
-  return {
-    level: 1,
-    image,
-    species: monsterSpecies,
-    type: monsterType,
-    stats
-  } as any;
+  // return {
+  //   level: 1,
+  //   image,
+  //   species: monsterSpecies,
+  //   type: monsterType,
+  //   stats
+  // } as any;
 }

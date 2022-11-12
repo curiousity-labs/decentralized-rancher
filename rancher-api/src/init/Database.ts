@@ -1,21 +1,15 @@
 import express from "express";
 import { Model, ModelStatic, Sequelize } from "sequelize";
-import { CreatureModel } from "../models/creatures";
-import { CreatureStatusModel } from "../models/creatureStatuses";
-import { UserModel } from "../models/players";
+import { CreatureModel } from "../database/models/creatures";
+import { StatusModel } from "../database/models/status";
+import { UserModel } from "../database/models/players";
 import { config } from "../settings";
-import { Creature, CreatureStatus, Player } from '../models/types';
-
-const associationOptions = (foreignKey: string) => ({
-  sourceKey: "id",
-  foreignKey: foreignKey,
-  onDelete: "cascade",
-});
+import { Creature, Status, Player } from '../database/models/types';
 
 type DefineAssociationsFunc = (models: {
   playerModel: ModelStatic<Model<Player>>,
   creatureModel: ModelStatic<Model<Creature>>,
-  creatureStatusModel: ModelStatic<Model<CreatureStatus>>
+  creatureStatusModel: ModelStatic<Model<Status>>
 }) => void;
 
 const defineAssociations: DefineAssociationsFunc = ({
@@ -44,16 +38,20 @@ const defineAssociations: DefineAssociationsFunc = ({
 export async function modalsInit(sequelize: Sequelize) {
 
   const playerModel = UserModel(sequelize)
-  const creatureModel = CreatureModel(sequelize)
-  const creatureStatusModel = CreatureStatusModel(sequelize)
+  // const creatureModel = CreatureModel(sequelize)
+  // const creatureStatusModel = StatusModel(sequelize)
 
-  defineAssociations({
-    playerModel,
-    creatureModel,
-    creatureStatusModel
-  })
-  // sync definitions
-  await sequelize.sync({ alter: true });
+  // defineAssociations({
+  //   playerModel,
+  //   creatureModel,
+  //   creatureStatusModel
+  // })
+
+  // This creates the table if it doesn't exist (and does nothing if it already exists)
+  sequelize.sync()
+
+  // @todo create migrations
+  // @todo create seed data
 }
 
 export default class Database {
@@ -68,7 +66,7 @@ export default class Database {
         host,
         port: Number(port),
         dialect,
-        logging: false,
+        logging: (...msg) => console.log(msg),
       });
       await sequelize
         .authenticate()
@@ -76,8 +74,7 @@ export default class Database {
           console.info(`[${dialect}] connection successful`);
           console.info(`[${name}] connected`);
 
-          // todo figure out why there is a type error here
-          modalsInit(sequelize as any);
+          modalsInit(sequelize);
 
           this.app.set("sequelize", sequelize)
           this.app.set("Sequelize", Sequelize)

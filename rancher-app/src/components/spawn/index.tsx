@@ -2,7 +2,7 @@ import { Box, Button, Text } from "@chakra-ui/react"
 import { useRancher } from "../../providers/rancher/hooks/useRancher"
 import { useState } from "react"
 import { NFTMonster, NonFungibleToken } from "../../types"
-import { spawnCreate } from "../../features/monsters/spawn"
+// import { spawnCreate } from "../../features/monsters/spawn"
 import NFTCard from "../nfts/NFTCard"
 import SpawnModal from "./SpawnModal"
 const Spawn = () => {
@@ -15,7 +15,7 @@ const Spawn = () => {
 
   const spawnNewCreate = () => {
     if (selected) {
-      setSpawnMonster(spawnCreate(selected))
+      // setSpawnMonster(spawnCreate(selected))
     }
   }
 

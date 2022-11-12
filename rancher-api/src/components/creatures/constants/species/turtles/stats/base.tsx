@@ -1,7 +1,5 @@
-import { NFTMonsterStats } from "../../../../../types";
-
 // base allocated points: 30 
-export const TURTLE_BASE_STATS: NFTMonsterStats = {
+export const TURTLE_BASE_STATS = {
   health: 8,
   strength: 4,
   defense: 7,

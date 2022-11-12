@@ -1,6 +1,5 @@
-import { NFTMonsterStats } from '../../../../../types/monsters';
 // max allocated points: 30 
-export const GOLEM_BASE_STATS: NFTMonsterStats = {
+export const GOLEM_BASE_STATS = {
   health: 8, // boosted
   strength: 5, // base
   defense: 8, // boosted

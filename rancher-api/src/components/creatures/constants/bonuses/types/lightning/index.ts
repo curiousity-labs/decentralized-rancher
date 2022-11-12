@@ -1,7 +1,5 @@
-import { NFTMonsterStats } from "../../../../../types";
-
 // max allocated points: 5
-export const LIGHTNING_BONUS_STATS: NFTMonsterStats = {
+export const LIGHTNING_BONUS_STATS = {
   health: 0,
   strength: 1,
   defense: -1,
