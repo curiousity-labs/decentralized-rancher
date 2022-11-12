@@ -66,7 +66,7 @@ export default class Database {
         host,
         port: Number(port),
         dialect,
-        logging: (...msg) => console.log(msg),
+        logging: console.log,
       });
       await sequelize
         .authenticate()
@@ -80,7 +80,7 @@ export default class Database {
           this.app.set("Sequelize", Sequelize)
         })
         .catch(console.error);
-    } catch {
+    } catch (e) {
       console.info(`connection unsuccessful`);
     }
   };
