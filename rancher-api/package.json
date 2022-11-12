@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "start": "ts-node ./src/index.ts",
-    "develop": "nodemon ./src/index.ts"
+    "develop": "nodemon ./src/index.ts",
+    "db:migrate": "sequelize db:migrate",
+    "db:migrate:undo": "sequelize db:migrate:undo",
+    "db:gm": "sequelize migration:generate --name",
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
