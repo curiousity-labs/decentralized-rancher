@@ -4,7 +4,6 @@ import {
   connectorsForWallets,
 } from '@rainbow-me/rainbowkit';
 import {
-  injectedWallet,
   ledgerWallet,
   metaMaskWallet,
   walletConnectWallet,
