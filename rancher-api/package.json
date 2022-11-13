@@ -5,8 +5,8 @@
   "scripts": {
     "start": "ts-node ./src/index.ts",
     "develop": "nodemon ./src/index.ts",
-    "db:migrate": "sequelize db:migrate",
-    "db:migrate:undo": "sequelize db:migrate:undo",
+    "db:migrate": "npx sequelize-cli db:migrate",
+    "db:migrate:undo": "npx sequelize-cli db:migrate:undo",
     "db:gm": "sequelize migration:generate --name"
   },
   "dependencies": {
@@ -28,6 +28,7 @@
     "@types/node": "^18.8.3",
     "@types/uuid": "^8.3.4",
     "nodemon": "^2.0.20",
+    "sequelize-cli": "^6.5.2",
     "ts-node": "^10.9.1",
     "typescript": "^4.8.4"
   }

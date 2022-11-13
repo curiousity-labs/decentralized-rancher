@@ -18,8 +18,8 @@ const defineAssociations: DefineAssociationsFunc = async ({
   networkModel,
 }) => {
 
-  playerModel.hasOne(networkModel, {})
-  networkModel.belongsTo(playerModel, {})
+  networkModel.hasOne(playerModel, {})
+  playerModel.belongsTo(networkModel, {})
 
 
   //  playerModel.hasOne(creatureModel, {
@@ -74,7 +74,7 @@ export default class Database {
         host,
         port: Number(port),
         dialect,
-        logging: console.log,
+        logging: false,
       });
       await sequelize
         .authenticate()

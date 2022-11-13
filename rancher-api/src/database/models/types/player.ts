@@ -9,5 +9,5 @@ export interface Player {
   ENSName: string,
   ENSDiscord: string,
   ENSTwitter: string,
-  networkId: string,
+  NetworkId: string,
 }

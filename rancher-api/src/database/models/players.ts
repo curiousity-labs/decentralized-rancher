@@ -10,7 +10,6 @@ export function UserModel(sequelize: Sequelize) {
         type: DataTypes.UUID,
         allowNull: false,
         primaryKey: true,
-        unique: true,
         defaultValue: uuidv4(),
       },
       // PLAYER provided
@@ -58,7 +57,7 @@ export function UserModel(sequelize: Sequelize) {
         allowNull: true
       },
       // REF NETWORKS TABLE
-      networkId: {
+      NetworkId: {
         type: DataTypes.UUID,
         allowNull: false,
         references: {

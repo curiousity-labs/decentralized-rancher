@@ -10,7 +10,6 @@ export function NetworkModel(sequelize: Sequelize) {
         type: DataTypes.UUID,
         allowNull: false,
         primaryKey: true,
-        unique: true,
         defaultValue: uuidv4(),
       },
       networkName: {
@@ -23,14 +22,14 @@ export function NetworkModel(sequelize: Sequelize) {
         unique: true,
       },
       isTestNetwork: {
-        type: DataTypes.STRING,
+        type: DataTypes.BOOLEAN,
         allowNull: false,
       },
       rpcURL: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      logoURL: {
+      networkColor: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -38,6 +37,8 @@ export function NetworkModel(sequelize: Sequelize) {
         type: DataTypes.STRING,
         allowNull: false,
       }
+    }, {
+      timestamps: false
     }
   )
 }
