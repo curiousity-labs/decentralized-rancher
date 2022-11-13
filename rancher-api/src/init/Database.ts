@@ -1,54 +1,62 @@
 import express from "express";
 import { Model, ModelStatic, Sequelize } from "sequelize";
-import { CreatureModel } from "../database/models/creatures";
-import { StatusModel } from "../database/models/status";
 import { UserModel } from "../database/models/players";
 import { config } from "../settings";
 import { Creature, Status, Player } from '../database/models/types';
+import { NetworkModel } from "../database/models/networks";
+import { Network } from "../database/models/types/network";
 
 type DefineAssociationsFunc = (models: {
   playerModel: ModelStatic<Model<Player>>,
-  creatureModel: ModelStatic<Model<Creature>>,
-  creatureStatusModel: ModelStatic<Model<Status>>
-}) => void;
+  networkModel: ModelStatic<Model<Network>>,
+  creatureModel?: ModelStatic<Model<Creature>>,
+  creatureStatusModel?: ModelStatic<Model<Status>>
+}) => Promise<void>;
 
-const defineAssociations: DefineAssociationsFunc = ({
+const defineAssociations: DefineAssociationsFunc = async ({
   playerModel,
-  creatureModel,
-  creatureStatusModel
+  networkModel,
 }) => {
-  playerModel.hasOne(creatureModel, {
-    onDelete: "cascade"
-  })
 
-  creatureModel.belongsTo(playerModel, {
-    onDelete: "cascade"
-  })
+  playerModel.hasOne(networkModel, {})
+  networkModel.belongsTo(playerModel, {})
 
-  creatureModel.hasMany(creatureStatusModel, {
-    onDelete: "cascade"
-  })
 
-  creatureStatusModel.belongsTo(creatureModel, {
-    onDelete: "cascade"
-  })
+  //  playerModel.hasOne(creatureModel, {
+  //   onDelete: "cascade"
+  // })
 
+  // creatureModel.belongsTo(playerModel, {
+  //   onDelete: "cascade"
+  // })
+
+  // creatureModel.hasMany(creatureStatusModel, {
+  //   onDelete: "cascade"
+  // })
+
+  // creatureStatusModel.belongsTo(creatureModel, {
+  //   onDelete: "cascade"
+  // })
+
+  // @todo remove these after MVP
+  await playerModel.sync({ alter: true })
+  await networkModel.sync({ alter: true })
 };
 
 export async function modalsInit(sequelize: Sequelize) {
 
   const playerModel = UserModel(sequelize)
+  const networkModel = NetworkModel(sequelize)
   // const creatureModel = CreatureModel(sequelize)
   // const creatureStatusModel = StatusModel(sequelize)
 
-  // defineAssociations({
-  //   playerModel,
-  //   creatureModel,
-  //   creatureStatusModel
-  // })
+  // initial sync of model definitions
+  await sequelize.sync()
 
-  // This creates the table if it doesn't exist (and does nothing if it already exists)
-  sequelize.sync()
+  await defineAssociations({
+    playerModel,
+    networkModel,
+  })
 
   // @todo create migrations
   // @todo create seed data

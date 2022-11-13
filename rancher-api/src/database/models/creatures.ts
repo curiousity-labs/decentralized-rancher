@@ -1,15 +1,19 @@
 import { Sequelize, DataTypes, Model } from "sequelize";
 import { Creature } from "./types/creature";
-
+import { v4 as uuidv4 } from "uuid";
 export function CreatureModel(sequelize: Sequelize) {
   return sequelize.define<Model<Creature>>(
-    "creatures",
+    "creature",
     {
+      id: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        primaryKey: true,
+        defaultValue: uuidv4(),
+      },
       level: {
         type: DataTypes.STRING,
         allowNull: false,
-        primaryKey: true,
-        unique: true,
       },
       image: {
         type: DataTypes.STRING,

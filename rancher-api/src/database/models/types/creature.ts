@@ -1,5 +1,6 @@
 
 export interface Creature {
+  id: string,
   level: string,
   image: string,
   type: string,
