@@ -1,11 +1,11 @@
-import { Box } from "@chakra-ui/react"
+import { Box, Flex } from "@chakra-ui/react"
 import Navigation from "../navigation"
 
 const Dashboard = () => {
   return (
-    <Box display="flex" justifyContent="center" alignItems="center" h="full">
+    <Flex justifyContent="center" alignItems="center" >
       <Navigation />
-    </Box>
+    </Flex>
   )
 }
 

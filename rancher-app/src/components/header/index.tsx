@@ -1,16 +1,13 @@
-import { Box, Text } from "@chakra-ui/react"
+import { Flex } from "@chakra-ui/react"
 import Account from "./Account"
+import { Logo } from "./Logo"
 
 const Header = () => {
   return (
-    <Box display="flex" justifyContent="space-between" alignItems="center">
-      <Box>
-        <Text fontSize={["2xl", "3xl"]} letterSpacing="widest" fontWeight="boldest" fontFamily="mono">
-          NFT Rancher
-        </Text>
-      </Box>
+    <Flex px="1.5rem" h="4rem" bg="linear-gradient(180deg, #272520 0%, #212185 100%)" alignItems="center" justifyContent="space-between">
+      <Logo />
       <Account />
-    </Box>
+    </Flex>
   )
 }
 
