@@ -1,21 +1,18 @@
 import { NotAllowedIcon } from "@chakra-ui/icons"
 import { Button, Box, IconButton } from "@chakra-ui/react"
-import { useWeb3Provider } from "@decent-org/wallet-provider"
+import { useConnectModal } from "@rainbow-me/rainbowkit"
+import { useAccount, useDisconnect, useNetwork } from "wagmi"
 import { createAccountSubstring } from "../../../helpers/string"
-import useNetwork from "../../../hooks/useNetwork"
 
 const Network = () => {
-  const {
-    state: { chainId },
-  } = useWeb3Provider()
-  const networkDetails = useNetwork(chainId)
+  const { chain } = useNetwork()
 
-  if (networkDetails) {
+  if (chain) {
     return (
       <Box display="flex" justifyContent="flex-end">
         <Box display="flex" alignItems="center" gap="2">
-          network: {networkDetails.name}{" "}
-          <Box bg={networkDetails.color} rounded="full" w="4" h="4" />{" "}
+          network: {chain.name}{" "}
+          <Box bg={'yellow.300'} rounded="full" w="4" h="4" />{" "}
         </Box>
       </Box>
     )
@@ -23,17 +20,15 @@ const Network = () => {
   return null
 }
 const Account = () => {
-  const {
-    connect,
-    disconnect,
-    state: { account },
-  } = useWeb3Provider()
+  const { address } = useAccount()
+  const { disconnect } = useDisconnect()
+  const { openConnectModal } = useConnectModal();
 
-  if (!account) {
+  if (!address) {
     return (
       <Box display="flex" gap="4">
         <Network />
-        <Button onClick={connect}>Connect Wallet</Button>
+        <Button onClick={openConnectModal}>Connect Wallet</Button>
       </Box>
     )
   }
@@ -42,14 +37,14 @@ const Account = () => {
     <Box display="flex" flexDirection="column" alignItems="center">
       <Network />
       <Box display="flex" alignItems="center" gap="4">
-        {createAccountSubstring(account)}
+        {createAccountSubstring(address)}
         <IconButton
           aria-label="Account Disconnect"
           icon={<NotAllowedIcon />}
           color="red.400"
           variant="unstyled"
           minW="0"
-          onClick={disconnect}
+          onClick={() => disconnect()}
         />
       </Box>
     </Box>

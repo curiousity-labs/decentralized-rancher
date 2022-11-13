@@ -1,19 +1,19 @@
 import { NonFungibleToken } from './../../../types/nft';
 import { RancherActions } from './../actions/index';
-import { useWeb3Provider } from '@decent-org/wallet-provider';
 import { useEffect } from "react";
 import { retrieveERC721TransferEvents } from "../../../services/etherscan";
 import { RancherActionTypes } from '../actions';
 import { retrieveERC721 } from '../../../services/opensea';
+import { useAccount } from 'wagmi';
 
 export const useLoadAccountNFTs = (dispatch: React.Dispatch<RancherActionTypes>) => {
-  const { state: { account } } = useWeb3Provider();
+  const { address } = useAccount()
 
   useEffect(() => {
-    if (!account) {
+    if (!address) {
       dispatch({ type: RancherActions.RESET })
     }
-  }, [account, dispatch])
+  }, [address, dispatch])
   useEffect(() => {
     const retrieveAccountNFTs = async (account: string) => {
       const eventNfts = await retrieveERC721TransferEvents(account);
@@ -45,9 +45,9 @@ export const useLoadAccountNFTs = (dispatch: React.Dispatch<RancherActionTypes>)
       dispatch({ type: RancherActions.UPDATE_NFT, payload: Array.from(mappedAssets.values()) })
     }
 
-    if (account) {
-      retrieveAccountNFTs(account);
+    if (address) {
+      retrieveAccountNFTs(address);
     }
-  }, [account, dispatch])
+  }, [address, dispatch])
   return;
 }

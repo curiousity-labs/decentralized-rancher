@@ -5,9 +5,9 @@
   "dependencies": {
     "@chakra-ui/icons": "^2.0.10",
     "@chakra-ui/react": "^2.3.4",
-    "@decent-org/wallet-provider": "^0.1.15",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@rainbow-me/rainbowkit": "^0.7.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -27,6 +27,7 @@
     "react-scripts": "5.0.1",
     "typescript": "^4.8.3",
     "util": "^0.12.4",
+    "wagmi": "^0.7.15",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

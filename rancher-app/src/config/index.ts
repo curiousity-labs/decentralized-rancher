@@ -1,1 +1,1 @@
-export * from './web3-provider.config'
+export * from './rainbow-kit.config'
