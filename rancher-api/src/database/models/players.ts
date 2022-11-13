@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export function UserModel(sequelize: Sequelize) {
   return sequelize.define<Model<Player>>(
-    "Player",
+    "Players",
     {
       id: {
         type: DataTypes.UUID,
@@ -27,6 +27,7 @@ export function UserModel(sequelize: Sequelize) {
       // UPDATEABLE by route
       level: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         defaultValue: 1
       },
       // PLAYER provided

@@ -1,11 +1,12 @@
-import express from "express";
+import { Application } from "express";
+import { playerRouter } from "../components/players/players.routes";
 
 export default class {
-  constructor(private app: express.Application) {
+  constructor(private app: Application) {
     this.useRouter()
   }
 
   public useRouter = () => {
-    // this.app.use('');
+    playerRouter(this.app);
   }
 }

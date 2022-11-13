@@ -1,23 +1,18 @@
-import { Express } from "express";
+import { Application } from 'express';
+import * as playerController from './players.controllers'
+import { validateParams } from './players.middleware';
 
-export function Players(app: Express) {
+export function playerRouter(app: Application) {
+  /**
+   * Create new player
+   */
+  app.post('/players/new', validateParams, playerController.newPlayer)
+
   // check auth
-  app.get('')
+  app.get('/players/:id', (_, res) => res.sendStatus(200))
 
   // update player level
-  app.put('')
+  app.post('/players/:id', (_, res) => res.sendStatus(200))
   
-  /**
-   * Create new Player
-   * @todo should create new entry into database
-   * @todo should lookup account ENS information
-   * 
-   * @param accountAddress address of new player
-   * @param signature signed message by new player
-   * @param nickname choosen nickname by new player
-   * @param chainId network chainId of new player
-   * 
-   */
-  app.post('')
 
 }

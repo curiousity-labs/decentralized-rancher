@@ -2,9 +2,9 @@ import express from "express";
 import { Model, ModelStatic, Sequelize } from "sequelize";
 import { UserModel } from "../database/models/players";
 import { config } from "../settings";
-import { Creature, Status, Player } from '../database/models/types';
+import { Creature, Status } from '../database/models/types';
 import { NetworkModel } from "../database/models/networks";
-import { Network } from "../database/models/types/network";
+import { Network, Player } from "../types";
 
 type DefineAssociationsFunc = (models: {
   playerModel: ModelStatic<Model<Player>>,

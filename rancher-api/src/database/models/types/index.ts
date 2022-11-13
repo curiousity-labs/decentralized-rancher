@@ -1,5 +1,5 @@
 export * from './creature'
-export * from './player'
+export * from '../../../types/player'
 export * from './status'
 
 export type NFTMonsterType = 'rock' | 'neutral' | 'fire' | 'wind' | 'dark' | 'light' | 'ice' | 'metal' | 'water' | 'lightning'

@@ -1,10 +1,10 @@
 import { Sequelize, DataTypes, Model } from "sequelize";
 import { v4 as uuidv4 } from "uuid";
-import { Network } from "./types/network";
+import { Network } from "../../types";
 
 export function NetworkModel(sequelize: Sequelize) {
   return sequelize.define<Model<Network>>(
-    "Network",
+    "Networks",
     {
       id: {
         type: DataTypes.UUID,
