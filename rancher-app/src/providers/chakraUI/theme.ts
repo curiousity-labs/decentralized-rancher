@@ -4,12 +4,12 @@ import * as components from './tokens/components'
 export const styles = {
   global: () => ({
     body: {
-      background: 'radial-gradient(57.89% 57.89% at 27.05% 0%, rgba(200, 255, 46, 0.24) 0%, rgba(100, 189, 206, 0) 100%)',
+      background: 'radial-gradient(57.89% 57.89% at 27.05% 0%, rgba(200, 200, 2, 0.24) 0%, rgba(100, 189, 206, 0) 100%)',
       backgroundSize: 'cover',
       color: 'whiteAlpha.900'
     },
     html: {
-      background: 'linear-gradient(180deg, #0005AF 0%, #1B1F18 100%)',
+      background: 'linear-gradient(180deg, #000055 0%, #000000FF 100%)',
       scrollBehavior: 'smooth',
       height: '100%',
     },
