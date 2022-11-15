@@ -1,6 +1,6 @@
 import { Flex } from "@chakra-ui/react"
 import Account from "./Account"
-import { Logo } from "./Logo"
+import { Logo } from "../ui/Logo"
 
 const Header = () => {
   return (

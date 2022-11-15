@@ -1,38 +1,29 @@
-import { SunIcon, ViewIcon } from "@chakra-ui/icons"
-import { Box, Button, Hide, Text } from "@chakra-ui/react"
+import { MinusIcon, SunIcon } from "@chakra-ui/icons"
+import { Box, Button, Text } from "@chakra-ui/react"
+import { useConnectModal } from "@rainbow-me/rainbowkit"
 import { useNavigate } from "react-router-dom"
+import { useAccount } from "wagmi"
 const Navigation = () => {
   const navigate = useNavigate()
+  const { isConnected } = useAccount()
+  const { openConnectModal } = useConnectModal()
   return (
-    <Box display="flex" flexDirection="column" border="2px" borderStyle="double" borderColor="gray.100" p="4" gap="4">
-      <Button
-        display="flex"
-        gap="2"
-        variant="unstyled"
-        minW="0"
-        justifyContent={["center", "flex-start"]}
-        px="0"
-        onClick={() => navigate('/spawn')}        
-      >
-        <SunIcon aria-label="spawn new monster" />
-        <Hide below="sm">
-          <Text>Spawn</Text>
-        </Hide>
-      </Button>
-      <Button
-        display="flex"
-        gap="2"
-        variant="unstyled"
-        minW="0"
-        justifyContent={["center", "flex-start"]}
-        px="0"
-        onClick={() => navigate('/monsters')}    
-      >
-        <ViewIcon aria-label="view nfts" />
-        <Hide below="sm">
-          <Text whiteSpace="nowrap">Created</Text>
-        </Hide>
-      </Button>
+    <Box display="flex" flexDirection="column" border="2px" borderStyle="groove" borderColor="gray.100" borderRadius="12px" p="4" gap="4">
+      {isConnected ? (
+        <Button
+          leftIcon={<SunIcon />}
+          onClick={() => navigate('/register')}
+        >
+          <Text fontFamily="mono">Register Player</Text>
+        </Button>
+      ) : (
+        <Button
+          leftIcon={<MinusIcon />}
+          onClick={openConnectModal}
+        >
+          <Text fontFamily="mono">Connect Wallet</Text>
+        </Button>
+      )}
     </Box>
   )
 }
