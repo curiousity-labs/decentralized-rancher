@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom"
 import Dashboard from "../components/dashboard"
+import { Register } from "../components/Register"
 import { useKeyPresses } from "../hooks/useKeyPresses"
 
 const MainRoutes = () => {
@@ -7,7 +8,7 @@ const MainRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Dashboard />} />
-      <Route path="/signup" element={<div />} />
+      <Route path="/register" element={<Register />} />
     </Routes>
   )
 }

@@ -1,7 +1,9 @@
 import { Box, Flex, Text } from "@chakra-ui/react"
 import { useNetwork } from "wagmi"
 import Header from "./components/header"
+import { FOOTER_HEIGHT } from "./constants"
 import MainRoutes from "./routes"
+import { addREM } from "./utils"
 
 const Network = () => {
   const { chain } = useNetwork()
@@ -21,10 +23,10 @@ function App() {
   return (
     <Flex flexDirection="column" justifyContent="space-between" minHeight="100vh">
       <Header />
-      <Box minHeight="calc(4rem - 100vh)">
+      <Box flexGrow={1}>
         <MainRoutes />
       </Box>
-      <Flex justifyContent="space-between" p="0.5rem">
+      <Flex justifyContent="space-between" h={addREM(FOOTER_HEIGHT)}>
         <Network />
         <Text fontSize="2xs" px="4" color="whiteAlpha.500">
           git-commit: {process.env.REACT_APP_GIT_HASH}

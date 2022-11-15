@@ -1,15 +1,17 @@
 import { Flex } from "@chakra-ui/react"
+import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../constants"
+import { addREM } from "../../utils"
 import Navigation from "../navigation"
 import { Logo } from "../ui/Logo"
 
 const Dashboard = () => {
   return (
-    <Flex justifyContent="center" alignItems="center" >
-      <Flex flexDirection="column" gap="1rem">
-        <Logo variant="dashboard" />
-        <Navigation />
+      <Flex minH={`calc(100vh - ${addREM(HEADER_HEIGHT + FOOTER_HEIGHT)})`} justifyContent="center" alignItems="center">
+        <Flex flexDirection="column" gap="1rem">
+          <Logo variant="dark" size="lg" />
+          <Navigation />
+        </Flex>
       </Flex>
-    </Flex>
   )
 }
 
