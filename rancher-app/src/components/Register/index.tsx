@@ -2,6 +2,7 @@ import { SunIcon } from "@chakra-ui/icons"
 import { Button, Center, Container, Flex, FormLabel, Input, Text } from "@chakra-ui/react"
 import { ReactNode } from "react"
 import { useAccount } from "wagmi"
+import { useRegisterPlayer } from "../../hooks/register/useRegisterPlayer"
 import { Logo } from "../ui/Logo"
 
 const LabelInputWrapper = ({ label, children }: { label: string; children: ReactNode }) => {
@@ -24,7 +25,7 @@ const LabelInputWrapper = ({ label, children }: { label: string; children: React
 
 export const Register = () => {
   const { address } = useAccount()
-  
+  const { nickName, updateNickName, signMessage, isRegisterLoading } = useRegisterPlayer()
   return (
     <Container>
       <Flex flexDirection="column" justifyContent="center" mt="1rem">
@@ -65,6 +66,9 @@ export const Register = () => {
               bg="#FFF"
               outline="none"
               h="4rem"
+              value={nickName}
+              onChange={(e) => updateNickName(e.target.value)}
+              // isDisabled={isRegisterLoading}
               fontSize="1.25rem"
             />
           </LabelInputWrapper>
@@ -78,6 +82,14 @@ export const Register = () => {
               fontSize="1.5rem"
               p="2rem 1.5rem"
               leftIcon={<SunIcon />}
+              onClick={() => signMessage()}
+              isDisabled={isRegisterLoading || !nickName}
+              _hover={{
+                _disabled: {
+                  bg: 'gray.500'
+                },
+                bg: "green.800"
+              }}
             >
               Sign and Register
             </Button>
