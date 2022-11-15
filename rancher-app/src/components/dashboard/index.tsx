@@ -8,7 +8,7 @@ const Dashboard = () => {
   return (
       <Flex minH={`calc(100vh - ${addREM(HEADER_HEIGHT + FOOTER_HEIGHT)})`} justifyContent="center" alignItems="center">
         <Flex flexDirection="column" gap="1rem">
-          <Logo variant="dark" size="lg" />
+          <Logo size="lg" />
           <Navigation />
         </Flex>
       </Flex>
