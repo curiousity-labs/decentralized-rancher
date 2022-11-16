@@ -14,7 +14,6 @@ export const useRegisterPlayer = () => {
     const axiosResponse = await axios.post('http://localhost:8080/players/new', {
       address, signature: encryptedSignature, nickname: nickname, chainId: chain!.id
     })
-    console.log("🚀 ~ file: useRegisterPlayer.tsx ~ line 15 ~ axiosResponse", axiosResponse)
     // @todo toast for error
     // @todo toast for success
     // @todo redirect for success

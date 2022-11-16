@@ -22,6 +22,6 @@ export const validateParams = async (req: RequestWithParams, res: express.Respon
   const decryptedSignature = decryptSignature(signature)
   const isSignatureVerified = await verifySignature(decryptedSignature, address, nickname, chainId)
   req.body.signature = decryptedSignature
-  if(!isSignatureVerified) return res.status(400).send({ error: "Signature doesn't match" })
+  if(!isSignatureVerified) return res.status(200).send({ error: "Signature doesn't match" })
   return next();
 } 
