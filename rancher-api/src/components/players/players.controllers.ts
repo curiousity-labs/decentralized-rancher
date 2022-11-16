@@ -38,5 +38,6 @@ export const newPlayer = async (req: express.Request<any, any, NewPlayerRequestP
 
   await player.save()
 
-  return res.sendStatus(200)
+  // @todo add a getter method to the Player model to make returning everything but signature.
+  return res.status(200).send({ player: { nickname: player.getDataValue('nickname') } })
 }
