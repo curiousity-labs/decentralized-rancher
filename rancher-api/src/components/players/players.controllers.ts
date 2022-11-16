@@ -26,8 +26,8 @@ export const newPlayer = async (req: express.Request<any, any, NewPlayerRequestP
   if (!network) return res.status(400).send({ error: "Unsupported Network" })
 
   // Error 400 - Player Account Exists on Network
-  const playerExist = playerModal.findOne({ where: { address, chainId } })
-  if (!playerExist) return res.status(200).send({ error: "Player already exists on Network" })
+  const playerExist = await playerModal.findOne({ where: { address, NetworkId: network.get('id') } })
+  if (!!playerExist) return res.status(200).send({ error: "Player already exists on Network" })
 
   const player = playerModal.build({
     address,
@@ -36,7 +36,7 @@ export const newPlayer = async (req: express.Request<any, any, NewPlayerRequestP
     NetworkId: network.get('id')
   })
 
-  await player.save()
+  // await player.save()
 
   // @todo add a getter method to the Player model to make returning everything but signature.
   return res.status(200).send({ player: { nickname: player.getDataValue('nickname') } })
