@@ -25,7 +25,7 @@ const LabelInputWrapper = ({ label, children }: { label: string; children: React
 
 export const Register = () => {
   const { address } = useAccount()
-  const { nickName, updateNickName, signMessage, isRegisterLoading } = useRegisterPlayer()
+  const { nickname, updateNickName, signMessage, isRegisterLoading } = useRegisterPlayer()
   return (
     <Container>
       <Flex flexDirection="column" justifyContent="center" mt="1rem">
@@ -66,7 +66,7 @@ export const Register = () => {
               bg="#FFF"
               outline="none"
               h="4rem"
-              value={nickName}
+              value={nickname}
               onChange={(e) => updateNickName(e.target.value)}
               // isDisabled={isRegisterLoading}
               fontSize="1.25rem"
@@ -83,7 +83,7 @@ export const Register = () => {
               p="2rem 1.5rem"
               leftIcon={<SunIcon />}
               onClick={() => signMessage()}
-              isDisabled={isRegisterLoading || !nickName}
+              isDisabled={isRegisterLoading || !nickname}
               _hover={{
                 _disabled: {
                   bg: 'gray.500'

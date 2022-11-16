@@ -1,27 +1,27 @@
 import { NewPlayerRequestParams } from "../../types";
 import express from 'express'
+import { decryptSignature, verifySignature } from "../../utils";
 
-export const validateParams = (req: express.Request<any, any, Partial<NewPlayerRequestParams>>, res: express.Response, next: express.NextFunction) => {
+type RequestWithParams = express.Request<any, any, NewPlayerRequestParams>
+
+function checkParams (params: Partial<NewPlayerRequestParams>) {
+  const paramKeys = ['address', 'signature', 'nickname', 'chainId'];
+  return paramKeys.filter(key => !Object.keys(params).includes(key))
+}
+
+export const validateParams = async (req: RequestWithParams, res: express.Response, next: express.NextFunction) => {
   const { address, signature, nickname, chainId } = req.body;
+  const missingParams = checkParams(req.body)
+  if(missingParams.length) {
+    return res.status(400).send({ error: `[${missingParams.join(', ')}] is required to process request` })
+  }
 
-  if(!address) {
-    // BAD REQUEST - address not provided
-    // @todo check for valid address
-    return res.status(400).send({error: 'address is required to process request'})
-  }
-  if(!signature) {
-    // BAD REQUEST - signature not provided
-    // @todo verify signature?
-    return res.status(400).send({error: 'signature is required to process request'})
-  }
-  if(!nickname) {
-    // BAD REQUEST - nickname not provided
-    return res.status(400).send({error: 'nickname is required to process request'})
-  }
-  if(!chainId) {
-    // BAD REQUEST - chainId not provided
-    return res.status(400).send({error: 'chainId is required to process request'})
-  } 
-  next();
+  // @todo decrypt signature and verify valid encryption
+  // @todo verify signature with address
 
+  const decryptedSignature = decryptSignature(signature)
+  const isSignatureVerified = await verifySignature(decryptedSignature, address, nickname, chainId)
+  req.body.signature = decryptedSignature
+  if(!isSignatureVerified) return res.status(400).send({ error: "Signature doesn't match" })
+  return next();
 } 

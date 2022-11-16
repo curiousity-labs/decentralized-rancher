@@ -17,6 +17,7 @@
     "@types/react-dom": "^18.0.6",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^0.27.2",
+    "crypto-js": "^4.1.1",
     "ethers": "^5.7.1",
     "framer-motion": "^7.3.6",
     "process": "^0.11.10",
@@ -53,5 +54,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.1.1"
   }
 }
