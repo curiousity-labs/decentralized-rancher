@@ -1,5 +1,5 @@
 {
-  "name": "rancher-app",
+  "name": "decentralized-rancher-interface",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
