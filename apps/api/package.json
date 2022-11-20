@@ -1,10 +1,10 @@
 {
-  "name": "rancher-api",
+  "name": "decentralized-rancher-api",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "ts-node ./src/index.ts",
-    "develop": "nodemon ./src/index.ts",
+    "dev": "nodemon ./src/index.ts",
     "db:migrate": "npx sequelize-cli db:migrate",
     "db:migrate:undo": "npx sequelize-cli db:migrate:undo",
     "db:gm": "sequelize migration:generate --name"

@@ -1,20 +1,16 @@
 version: '3'
 services:
   blockchain:
-    build: rancher-contracts
+    build: packages/contracts
     ports:
       - "8545:8545"
-  api:
-    build: rancher-api
-    ports:
-      - "8080:8080"
   database:
     image: "postgres" # use latest official postgres version
     env_file:
-      - ./rancher-api/.env # configure postgres
+      - apps/api/.env # configure postgres
     volumes:
-      - nft-rancher:/var/lib/postgresql/data/ # persist data even if container shuts down
+      - decentralizedR:/var/lib/postgresql/data/ # persist data even if container shuts down
     ports:
       - '5432:5432'
 volumes:
-  nft-rancher:
+  decentralizedR:
