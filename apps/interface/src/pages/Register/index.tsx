@@ -3,7 +3,7 @@ import { Button, Center, Container, Flex, FormLabel, Input, Text } from "@chakra
 import { ReactNode } from "react"
 import { useAccount } from "wagmi"
 import { useRegisterPlayer } from "../../hooks/register/useRegisterPlayer"
-import { Logo } from "../ui/Logo"
+import { Logo } from "../../components/ui/Logo"
 
 const LabelInputWrapper = ({ label, children }: { label: string; children: ReactNode }) => {
   return (

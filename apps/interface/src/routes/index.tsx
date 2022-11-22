@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom"
-import Home from "../components/home"
-import { Register } from "../components/Register"
+import Home from "../pages/Home"
+import { Register } from "../pages/Register"
 import { useKeyPresses } from "../hooks/useKeyPresses"
 import { BASE_ROUTES } from "./definations/base"
 
