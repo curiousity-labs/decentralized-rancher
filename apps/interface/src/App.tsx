@@ -1,8 +1,11 @@
 import { Box, Flex, Text } from "@chakra-ui/react"
+import { Link } from "react-router-dom"
 import { useNetwork } from "wagmi"
-import Header from "./components/header"
-import { FOOTER_HEIGHT } from "./constants"
+import Account from "./components/header/HeaderAccountDisplay"
+import { Logo } from "./components/ui/Logo"
+import { FOOTER_HEIGHT, HEADER_HEIGHT } from "./constants"
 import MainRoutes from "./routes"
+import { BASE_ROUTES } from "./routes/definations/base"
 import { addREM } from "./utils"
 
 const Network = () => {
@@ -22,7 +25,12 @@ const Network = () => {
 function App() {
   return (
     <Flex flexDirection="column" justifyContent="space-between" minHeight="100vh">
-      <Header />
+      <Flex px="1.5rem" h={addREM(HEADER_HEIGHT)} bg="linear-gradient(180deg, #272520 0%, #212185 100%)" alignItems="center" justifyContent="space-between">
+        <Link to={BASE_ROUTES.home.relative()}>
+          <Logo />
+        </Link>
+        <Account />
+      </Flex>
       <Box flexGrow={1}>
         <MainRoutes />
       </Box>

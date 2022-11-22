@@ -4,7 +4,7 @@ import { useConnectModal } from "@rainbow-me/rainbowkit"
 import { useAccount, useDisconnect, useEnsName } from "wagmi"
 import { createAccountSubstring } from "../../../helpers/string"
 
-const Account = () => {
+const HeaderAccountDisplay = () => {
   const { address } = useAccount()
   const { disconnect } = useDisconnect()
   const { openConnectModal } = useConnectModal();
@@ -32,4 +32,4 @@ const Account = () => {
   )
 }
 
-export default Account
+export default HeaderAccountDisplay

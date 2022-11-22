@@ -1,5 +1,5 @@
 import { Box, Text, Image } from "@chakra-ui/react"
-import { NonFungibleToken } from "../../types"
+import { NonFungibleToken } from "../../../types"
 import noImage from "../../assets/images/no-image-icon-23.svg"
 
 interface INFTCard {

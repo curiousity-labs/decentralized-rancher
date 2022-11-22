@@ -3,7 +3,7 @@ import { useRancher } from "../../providers/rancher/hooks/useRancher"
 import { useState } from "react"
 import { NFTMonster, NonFungibleToken } from "../../types"
 // import { spawnCreate } from "../../features/monsters/spawn"
-import NFTCard from "../nfts/NFTCard"
+import NFTCard from "../ui/cards/NFTCard"
 import SpawnModal from "./SpawnModal"
 const Spawn = () => {
   const {
