@@ -1,6 +1,6 @@
 import { SunIcon } from "@chakra-ui/icons"
 import { Button, Center, Container, Flex, FormLabel, Input, Text } from "@chakra-ui/react"
-import { ReactNode } from "react"
+import { ReactNode, useMemo, useState } from "react"
 import { useAccount } from "wagmi"
 import { useRegisterPlayer } from "../../hooks/register/useRegisterPlayer"
 import { Logo } from "../../components/ui/Logo"
@@ -25,6 +25,8 @@ const LabelInputWrapper = ({ label, children }: { label: string; children: React
 
 export const Register = () => {
   const { address } = useAccount()
+  const readonlyAddress = useMemo(() => address || '', [address]);
+  
   const { nickname, updateNickName, signMessage, isRegisterLoading } = useRegisterPlayer()
   return (
     <Container>
@@ -49,7 +51,7 @@ export const Register = () => {
               bg="#FFF"
               outline="none"
               h="4rem"
-              value={address}
+              value={readonlyAddress}
               fontSize="1.25rem"
               isDisabled
               _disabled={{
