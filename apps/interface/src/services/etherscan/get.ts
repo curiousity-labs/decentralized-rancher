@@ -7,7 +7,7 @@ export const retrieveERC721TransferEvents = async (account: string): Promise<ERC
     module: 'account',
     action: 'tokennfttx',
     address: account,
-    apikey: process.env.REACT_APP_ETHERSCAN_ID || '',
+    apikey: import.meta.env.VITE_ETHERSCAN_ID || '',
     page: "1",
     limit: "50"
   })

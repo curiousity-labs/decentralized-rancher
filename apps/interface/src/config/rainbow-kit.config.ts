@@ -17,12 +17,11 @@ import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { infuraProvider } from 'wagmi/providers/infura';
 import { publicProvider } from 'wagmi/providers/public';
 
-
 export const { chains, provider } = configureChains(
   [chain.goerli, chain.localhost],
   [
-    alchemyProvider({ apiKey: process.env.REACT_APP_ALCHEMY_ID }),
-    infuraProvider({ apiKey: process.env.REACT_APP_INFURA_ID }),
+    alchemyProvider({ apiKey: import.meta.env.VITE_ALCHEMY_ID }),
+    infuraProvider({ apiKey: import.meta.env.VITE_INFURA_ID }),
     publicProvider()
   ]
 );

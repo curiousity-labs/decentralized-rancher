@@ -37,7 +37,7 @@ function App() {
       <Flex justifyContent="space-between" h={addREM(FOOTER_HEIGHT)}>
         <Network />
         <Text fontSize="2xs" px="4" color="whiteAlpha.500">
-          git-commit: {process.env.REACT_APP_GIT_HASH}
+          git-commit: {import.meta.env.VITE_GIT_HASH}
         </Text>
       </Flex>
     </Flex>

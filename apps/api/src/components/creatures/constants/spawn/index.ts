@@ -7,7 +7,7 @@ import { utils } from 'ethers';
 
 export const spawnCreate = (nft: any): any => {
   const { contractAddress, tokenID } = nft;
-  const salt = process.env.REACT_APP_SECRET_SALT
+  const salt = process.env.VITE_SECRET_SALT
   
   const s = utils.toUtf8Bytes(`${contractAddress}:${tokenID}:${salt}`).reduce((acc, cur) => cur + acc, 0)
   const [a, b, c, d, e] = Array.from(String(s), num => Number(num))

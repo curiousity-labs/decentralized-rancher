@@ -10,8 +10,8 @@ export const useRegisterPlayer = () => {
   const { chain } = useNetwork()
   const toast = useToast()
 
-  const SECRET_PHASE = process.env.REACT_APP_SECRET_PHRASE!
-  const SECRET_SALT = process.env.REACT_APP_SECRET_SALT!
+  const SECRET_PHASE = import.meta.env.VITE_SECRET_PHRASE!
+  const SECRET_SALT = import.meta.env.VITE_SECRET_SALT!
   const encryptedSecret = MD5(SECRET_SALT)
 
   const registerPlayer = async (encryptedSignature: string) => {
