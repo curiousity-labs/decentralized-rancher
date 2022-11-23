@@ -28,33 +28,19 @@ export const Register = () => {
         >
           <LabelInputWrapper label="Account">
             <Input
-              p="1rem"
-              borderRadius="0.5rem"
               w="full"
-              bg="#FFF"
-              outline="none"
-              h="4rem"
               value={readonlyAddress}
-              fontSize="1.25rem"
               isDisabled
-              _disabled={{
-                bg: "blackAlpha.400",
-                color: "gray.200",
-              }}
+
             />
           </LabelInputWrapper>
           <LabelInputWrapper label="Character Nickname">
             <Input
-              p="1rem"
-              borderRadius="0.5rem"
               w="full"
               bg="#FFF"
-              outline="none"
-              h="4rem"
               value={nickname}
               onChange={(e) => updateNickName(e.target.value)}
               // isDisabled={isRegisterLoading}
-              fontSize="1.25rem"
             />
           </LabelInputWrapper>
           <Center>

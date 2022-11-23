@@ -65,6 +65,7 @@ importers:
 
   apps/interface:
     specifiers:
+      '@chakra-ui/anatomy': ^2.1.0
       '@chakra-ui/icons': ^2.0.10
       '@chakra-ui/react': ^2.3.4
       '@emotion/react': ^11.10.4
@@ -96,6 +97,7 @@ importers:
       wagmi: ^0.7.15
       web-vitals: ^2.1.4
     dependencies:
+      '@chakra-ui/anatomy': 2.1.0
       '@chakra-ui/icons': 2.0.12_react@18.2.0
       '@chakra-ui/react': 2.4.1_fqfjrcf4r5ejjaxw4ez4knwbra
       '@emotion/react': 11.10.5_fan5qbzahqtxlm5dzefqlqx5ia
