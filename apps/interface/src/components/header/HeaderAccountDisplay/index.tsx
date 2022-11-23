@@ -1,23 +1,22 @@
 import { NotAllowedIcon } from "@chakra-ui/icons"
 import { Button, IconButton, Flex, Text } from "@chakra-ui/react"
 import { useConnectModal } from "@rainbow-me/rainbowkit"
-import { useAccount, useDisconnect, useEnsName } from "wagmi"
-import { createAccountSubstring } from "../../../helpers/string"
+import { useAccount, useDisconnect } from "wagmi"
+import { useAddressString } from "../../../hooks/utils/useAddressString"
 
 const HeaderAccountDisplay = () => {
   const { address } = useAccount()
   const { disconnect } = useDisconnect()
   const { openConnectModal } = useConnectModal();
 
-  const { data } = useEnsName({ address })
+  const { displayName } = useAddressString(address)
 
   if (!address) {
     return <Button variant="ghost" onClick={openConnectModal}>Connect Wallet</Button>
   }
-  // if account is connected
   return (
     <Flex alignItems="center" gap="1rem">
-      <Text fontSize="lg" fontFamily="sans">{data ? data : createAccountSubstring(address)}</Text>
+      <Text fontSize="lg" fontFamily="sans">{displayName}</Text>
       <IconButton
         aria-label="Account Disconnect"
         icon={<NotAllowedIcon boxSize="1.5rem" />}

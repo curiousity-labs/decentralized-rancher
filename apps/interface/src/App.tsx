@@ -1,10 +1,10 @@
 import { Box, Flex, Text } from "@chakra-ui/react"
 import { Link } from "react-router-dom"
 import { useNetwork } from "wagmi"
-import Account from "./components/header/HeaderAccountDisplay"
+import HeaderAccountDisplay from "./components/header/HeaderAccountDisplay"
+import MainRoutes from "./routes"
 import { Logo } from "./components/ui/Logo"
 import { FOOTER_HEIGHT, HEADER_HEIGHT } from "./constants"
-import MainRoutes from "./routes"
 import { BASE_ROUTES } from "./routes/definations/base"
 import { addREM } from "./utils"
 
@@ -29,7 +29,7 @@ function App() {
         <Link to={BASE_ROUTES.home.relative()}>
           <Logo />
         </Link>
-        <Account />
+        <HeaderAccountDisplay />
       </Flex>
       <Box flexGrow={1}>
         <MainRoutes />
