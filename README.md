@@ -19,23 +19,17 @@ Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 - [TypeScript](https://www.typescriptlang.org/) for static type checking
 
 
-### Develop
+### Let's get started then
 
-To develop all apps and packages, run the following command:
+Let's change things up and give you a table to look at
 
-install with `pnpm`
-```
-pnpm install
-```
+| command | description |
+| :------- | :----------- |
+|`nvm use` | Please use proper node version |
+|`pnpm install` | installs dependencies of app and packages |
+|`docker compose up --build` | Run in a seperate terminal or in detached mode `-d`. This will create dockerized containers for database and a local blockchain node. `docker compose up --build database` will only start the database when ran. Note: This needs to be running before running next command |
+|`pnpm run dev` | Last but not least run the development servers for apps. Then will run the app's interface on port `4000` and the api on port `8080` |
 
-and then run Docker services (Database and Local blockchain)
-
-```
-docker compose up --build 
-```
-
-```
-pnpm run dev
-```
+And thats it for now. You should be up and running locally
 
 Updates to README will happen in the future
