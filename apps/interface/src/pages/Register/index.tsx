@@ -2,9 +2,9 @@ import { SunIcon } from "@chakra-ui/icons"
 import { Button, Center, Container, Flex, Input } from "@chakra-ui/react"
 import { useMemo } from "react"
 import { useAccount } from "wagmi"
-import { useRegisterPlayer } from "../../hooks/register/useRegisterPlayer"
-import { Logo } from "../../components/ui/Logo"
 import { LabelInputWrapper } from "../../components/ui/forms/LabelInputWrapper"
+import { Logo } from "../../components/ui/Logo"
+import { useRegisterPlayer } from "../../hooks/register/useRegisterPlayer"
 
 export const Register = () => {
   const { address } = useAccount()

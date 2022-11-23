@@ -1,8 +1,8 @@
 import { Flex } from "@chakra-ui/react"
+import Navigation from "../../components/home/navigation"
+import { Logo } from "../../components/ui/Logo"
 import { FOOTER_HEIGHT, HEADER_HEIGHT } from "../../constants"
 import { addREM } from "../../utils"
-import Navigation from "../../components/navigation"
-import { Logo } from "../../components/ui/Logo"
 
 const Home = () => {
   return (

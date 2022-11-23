@@ -1,12 +1,12 @@
 import { Box, Flex, Text } from "@chakra-ui/react"
 import { Link } from "react-router-dom"
+import { Network } from "./components/footer/Network"
 import HeaderAccountDisplay from "./components/header/HeaderAccountDisplay"
-import MainRoutes from "./routes"
 import { Logo } from "./components/ui/Logo"
 import { FOOTER_HEIGHT, HEADER_HEIGHT } from "./constants"
+import MainRoutes from "./routes"
 import { BASE_ROUTES } from "./routes/definations/base"
 import { addREM } from "./utils"
-import { Network } from "./components/footer/Network"
 
 function App() {
   return (

@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom"
+import { useKeyPresses } from "../hooks/useKeyPresses"
 import Home from "../pages/Home"
 import { Register } from "../pages/Register"
-import { useKeyPresses } from "../hooks/useKeyPresses"
 import { BASE_ROUTES } from "./definations/base"
 
 const MainRoutes = () => {
