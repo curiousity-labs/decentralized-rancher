@@ -6,6 +6,7 @@ import { useStringMethods } from "./useStringMethods"
 
 export const useAddressString = (address: EthAddress | undefined) => {
   const [displayName, setDisplayName] = useState('');
+  const [isENS, setIsENS] = useState(false);
   const provider = useProvider()
 
   const lookupENS = useCallback(async (address: EthAddress) => {
@@ -17,6 +18,7 @@ export const useAddressString = (address: EthAddress | undefined) => {
   useEffect(() => {
     if(!address) {
       setDisplayName('');
+      setIsENS(false);
       return;
     }
 
@@ -24,12 +26,14 @@ export const useAddressString = (address: EthAddress | undefined) => {
       const ensname = await lookupENS(address);
       if(ensname) {
         setDisplayName(ensname)
+        setIsENS(true)
         return
       }
       setDisplayName(addressSubString(address))
+      setIsENS(false);
     })()
 
   }, [address, addressSubString, lookupENS])
 
-  return { displayName }
+  return { displayName, isENS }
 }
