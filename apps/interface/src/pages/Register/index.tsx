@@ -1,27 +1,10 @@
 import { SunIcon } from "@chakra-ui/icons"
-import { Button, Center, Container, Flex, FormLabel, Input, Text } from "@chakra-ui/react"
-import { ReactNode, useMemo, useState } from "react"
+import { Button, Center, Container, Flex, Input } from "@chakra-ui/react"
+import { useMemo } from "react"
 import { useAccount } from "wagmi"
 import { useRegisterPlayer } from "../../hooks/register/useRegisterPlayer"
 import { Logo } from "../../components/ui/Logo"
-
-const LabelInputWrapper = ({ label, children }: { label: string; children: ReactNode }) => {
-  return (
-    <FormLabel position="relative" my="1rem">
-      <Text
-        position="absolute"
-        top="-0.74rem"
-        bg="#FFF"
-        px="1rem"
-        fontFamily="mono"
-        borderTopRightRadius="1rem"
-      >
-        {label}
-      </Text>
-      {children}
-    </FormLabel>
-  )
-}
+import { LabelInputWrapper } from "../../components/ui/forms/LabelInputWrapper"
 
 export const Register = () => {
   const { address } = useAccount()
