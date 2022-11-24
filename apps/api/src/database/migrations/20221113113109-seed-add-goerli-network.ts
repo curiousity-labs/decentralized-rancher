@@ -1,7 +1,13 @@
+import { QueryInterface } from 'sequelize';
+import { Umzug } from '../types';
+
 const uuid = require('uuid');
 
 module.exports = {
-  async up(queryInterface) {
+  async up(queryInterfaceContext: Umzug | QueryInterface) {
+    const umzugQueryInterface = (queryInterfaceContext as Umzug).context.queryInterface
+    const queryInterface = umzugQueryInterface ? umzugQueryInterface : queryInterfaceContext as QueryInterface
+
     return await queryInterface.bulkInsert('Networks', [{
       id: uuid.v4(),
       networkName: 'GOERLI',
@@ -29,7 +35,9 @@ module.exports = {
     }])
   },
 
-  async down(queryInterface) {
+  async down(queryInterfaceContext: Umzug | QueryInterface) {
+    const umzugQueryInterface = (queryInterfaceContext as Umzug).context.queryInterface
+    const queryInterface = umzugQueryInterface ? umzugQueryInterface : queryInterfaceContext as QueryInterface
     return await queryInterface.bulkDelete('Networks', [{ networkName: 'LOCAL' }, { networkName: 'GOERLI' }, { networkName: 'SEPOLIA' }])
   }
 };

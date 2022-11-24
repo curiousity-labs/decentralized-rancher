@@ -5,6 +5,7 @@ import { config } from "../settings";
 import { Creature, Status } from '../database/models/types';
 import { NetworkModel } from "../database/models/networks";
 import { Network, Player } from "../types";
+import { SequelizeStorage, Umzug } from "umzug";
 
 type DefineAssociationsFunc = (models: {
   playerModel: ModelStatic<Model<Player>>,
@@ -58,8 +59,14 @@ export async function modalsInit(sequelize: Sequelize) {
     networkModel,
   })
 
-  // @todo create migrations
-  // @todo create seed data
+  const umzug = new Umzug({
+    migrations: { glob: 'src/database/migrations/*.ts' },
+    context: sequelize.getQueryInterface(),
+    storage: new SequelizeStorage({ sequelize }),
+    logger: console,
+  });
+
+  await umzug.up();
 }
 
 export default class Database {
