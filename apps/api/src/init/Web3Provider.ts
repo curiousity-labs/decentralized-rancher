@@ -4,7 +4,7 @@ import { GOERLI_NETWORK, SEPOLIA_NETWORK, LOCAL_NETWORK } from "../settings";
 import { Application } from 'express';
 
 class Provider {
-  public provider?: providers.BaseProvider | providers.JsonRpcProvider
+  public provider: providers.BaseProvider | providers.JsonRpcProvider = getDefaultProvider(providers.getNetwork(5), config.web3.providerKeys)
   constructor(
     public network: string,
     public chainID?: string,
@@ -41,8 +41,7 @@ class Provider {
 
 
 export class Web3Provider {
-  public activeNetworks: Map<string, Provider> = new Map();
-  public supportedChainIDs: string[] = []
+  public activeNetworks: Map<string, providers.BaseProvider | providers.JsonRpcProvider> = new Map();
 
   constructor(private app: Application) { }
 
@@ -52,18 +51,17 @@ export class Web3Provider {
       new Provider(SEPOLIA_NETWORK.network, SEPOLIA_NETWORK.chaindID),
       new Provider(LOCAL_NETWORK.network, LOCAL_NETWORK.chaindID)]
 
-    const supportedChains: string[] = []
-    const activeNetworks = new Map<string, Provider>()
+    const activeNetworks = new Map<string, providers.BaseProvider | providers.JsonRpcProvider>()
     await Promise.all(providers.map(async (provider: Provider) => {
       if (provider.provider && provider.chainID) {
-        if (await provider.provider.detectNetwork().catch(() => console.log(`[${provider.network}] network is unavailable`))) {
-          supportedChains.push(provider.chainID)
-          activeNetworks.set(provider.chainID, provider)
+        const networkDetected = await provider.provider.detectNetwork().catch(() => {console.log(`[${provider.network}] network is unavailable`)})
+        if (!!networkDetected) {
+          console.log(`${provider.network} available`)
+          activeNetworks.set(provider.chainID, provider.provider)
         }
       }
     }))
-    this.activeNetworks = activeNetworks
-    this.supportedChainIDs = supportedChains
+      this.activeNetworks = activeNetworks
     this.app.set('web3', this)
   }
 }

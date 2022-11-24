@@ -1,5 +1,6 @@
 import express from 'express';
 import { Model, Sequelize } from 'sequelize';
+import { Web3Provider } from '../../init/Web3Provider';
 import { NewPlayerRequestParams, Network } from '../../types';
 
 
@@ -36,7 +37,30 @@ export const newPlayer = async (req: express.Request<any, any, NewPlayerRequestP
     NetworkId: network.get('id')
   })
 
-  // await player.save()
+  // retrieve address ens information
+
+  const providers: Web3Provider = req.app.get('web3')
+  const web3Provider = providers.activeNetworks.get(network.getDataValue('chainId').toString())
+  if (!web3Provider) return res.status(500).send({ error: "There was a problem with the connection to the provider, try again later" })
+
+  const ENSName = await web3Provider.lookupAddress(address)
+  if (ENSName) {
+    const resolver = await web3Provider.getResolver(ENSName);
+    if (resolver) {
+      const ENSAvatar = await resolver.getText("avatar");
+      const ENSEmail = await resolver.getText("email");
+      const ENSTwitter = await resolver.getText("com.twitter");
+      const ENSDiscord = await resolver.getText("com.discord");
+      
+      player.setDataValue('ENSAvatar', ENSAvatar)
+      player.setDataValue('ENSEmail', ENSEmail)
+      player.setDataValue('ENSName', ENSName)
+      player.setDataValue('ENSTwitter', ENSTwitter)
+      player.setDataValue('ENSDiscord', ENSDiscord)
+    }
+  }
+
+  await player.save()
 
   // @todo add a getter method to the Player model to make returning everything but signature.
   return res.status(200).send({ player: { nickname: player.getDataValue('nickname') } })
