@@ -23,7 +23,10 @@
   "scripts": {
     "dev": "GENERATE_SOURCEMAP=false VITE_GIT_HASH=`git rev-parse HEAD` vite",
     "build": "vite build",
-    "eject": "react-app-rewired eject"
+    "eject": "react-app-rewired eject",
+    "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
+    "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
   "browserslist": {
     "production": [
@@ -49,7 +52,13 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/svgo": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^5.44.0",
+    "@typescript-eslint/parser": "^5.44.0",
     "@vitejs/plugin-react": "^2.2.0",
+    "eslint": "^8.28.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^2.8.0",
     "vite": "^3.2.4",
     "vite-tsconfig-paths": "^3.6.0"
