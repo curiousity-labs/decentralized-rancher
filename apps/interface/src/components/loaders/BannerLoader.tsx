@@ -1,16 +1,7 @@
-import { Box, Flex, keyframes } from '@chakra-ui/react'
-import { motion } from 'framer-motion'
+import { Box, Flex } from '@chakra-ui/react'
 import { Wave } from '../ui/animations/Wave'
 
-const animationKeyframes = keyframes`
-  0% { left: 10%; transform: scale(1) rotate(0); border-radius: 20%;}
-  25% { transform: scale(2) rotate(0); border-radius: 20%; }
-  50% { transform: scale(2) rotate(270deg); border-radius: 50%; }
-  75% { transform: scale(1) rotate(270deg); border-radius: 50%; }
-  100% { left: 90%; transform: scale(1) rotate(0); border-radius: 20%; }
-`
 
-const animation = `${animationKeyframes} 2s ease-in-out infinite`
 
 export const BannerLoader = () => {
   return (
