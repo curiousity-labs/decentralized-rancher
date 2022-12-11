@@ -1,14 +1,14 @@
 export const BASE_ROUTES = {
   home: {
     path: '/',
-    relative: () => '/'
+    relative: () => '/',
   },
   register: {
     path: 'register',
-    relative: () => '/register'
+    relative: () => '/register',
   },
   players: {
-    path: 'players/*',
-    relative: () => ''
-  }
+    path: 'player/*',
+    relative: () => '',
+  },
 }

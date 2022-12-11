@@ -1,8 +1,8 @@
-import { useMemo, useReducer } from "react"
-import { RancherActions, RancherActionTypes } from "./actions"
-import { useLoadAccountNFTs } from "./hooks/useLoadAccountNFTs"
-import { RancherContext } from "./hooks/useRancher"
-import type { RancherStore } from "./types"
+import { useMemo, useReducer } from 'react'
+import { RancherActions, RancherActionTypes } from './actions'
+import { useLoadAccountNFTs } from './hooks/useLoadAccountNFTs'
+import { RancherContext } from './hooks/useRancher'
+import type { RancherStore } from './types'
 
 const initialState: RancherStore = {
   nfts: [],
@@ -25,7 +25,7 @@ const RancherProvider = ({ children }: { children: JSX.Element }) => {
     () => ({
       state: state,
     }),
-    [state]
+    [state],
   )
   return <RancherContext.Provider value={value}>{children}</RancherContext.Provider>
 }

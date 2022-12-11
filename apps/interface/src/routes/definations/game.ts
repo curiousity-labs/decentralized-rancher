@@ -1,14 +1,10 @@
 export const GAME_ROUTES = {
-  players: {
+  player: {
     path: ':account',
-    relative: (account: string) => `/players/${account}/dashboard`
-  },
-  dashboard: {
-    path: 'dashboard',
-    relative: (account: string) => `/players/${account}/dashboard`
+    relative: (account: string) => `/player/${account}`,
   },
   game: {
     path: 'game',
-    relative: (account: string) => `/players/${account}/game`
-  }
+    relative: (account: string) => `/player/${account}/game`,
+  },
 }

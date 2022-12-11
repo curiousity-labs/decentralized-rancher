@@ -1,11 +1,11 @@
-import {  useState } from "react"
-import { useAccount, useNetwork, useSignMessage } from "wagmi"
-import { AES, MD5 } from "crypto-js"
-import axios from "axios"
-import { useToast } from "@chakra-ui/react"
+import { useState } from 'react'
+import { useAccount, useNetwork, useSignMessage } from 'wagmi'
+import { AES, MD5 } from 'crypto-js'
+import axios from 'axios'
+import { useToast } from '@chakra-ui/react'
 
 export const useRegisterPlayer = () => {
-  const [nickname, setNickname] = useState<string>("")
+  const [nickname, setNickname] = useState<string>('')
   const { address } = useAccount()
   const { chain } = useNetwork()
   const toast = useToast()
@@ -16,7 +16,7 @@ export const useRegisterPlayer = () => {
 
   const registerPlayer = async (encryptedSignature: string) => {
     try {
-      const { data } = await axios.post("http://localhost:8080/players/new", {
+      const { data } = await axios.post('http://localhost:8080/players/new', {
         address,
         signature: encryptedSignature,
         nickname: nickname,
@@ -31,7 +31,7 @@ export const useRegisterPlayer = () => {
 
       if (data.success) {
         toast({
-          description: "Success! 🚀",
+          description: 'Success! 🚀',
         })
         // @todo redirect for success
       }

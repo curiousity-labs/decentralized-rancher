@@ -14,17 +14,17 @@ function primary() {
       bg: 'gray.100',
       _disabled: {
         ...disabled,
-        _loading: loading
+        _loading: loading,
       },
     },
     _disabled: {
       ...disabled,
-      _loading: loading
+      _loading: loading,
     },
     _active: {},
     _focus: {
-      outline: 'none'
-    }
+      outline: 'none',
+    },
   }
 }
 

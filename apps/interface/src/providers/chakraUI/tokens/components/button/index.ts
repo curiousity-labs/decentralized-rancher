@@ -8,6 +8,6 @@ const buttonstyles = {
   variants,
   sizes,
   defaultProps,
-};
+}
 
 export default buttonstyles

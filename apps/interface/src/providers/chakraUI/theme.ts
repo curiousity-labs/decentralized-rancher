@@ -1,12 +1,13 @@
-import { extendTheme } from "@chakra-ui/react"
+import { extendTheme } from '@chakra-ui/react'
 import * as components from './tokens/components'
 
 export const styles = {
   global: () => ({
     body: {
-      background: 'radial-gradient(57.89% 57.89% at 27.05% 0%, rgba(200, 200, 2, 0.24) 0%, rgba(100, 189, 206, 0) 100%)',
+      background:
+        'radial-gradient(57.89% 57.89% at 27.05% 0%, rgba(200, 200, 2, 0.24) 0%, rgba(100, 189, 206, 0) 100%)',
       backgroundSize: 'cover',
-      color: 'whiteAlpha.900'
+      color: 'whiteAlpha.900',
     },
     html: {
       background: 'linear-gradient(180deg, #000055 0%, #000000FF 100%)',
@@ -41,5 +42,5 @@ export const styles = {
 
 export const theme = extendTheme({
   styles,
-  components
+  components,
 })

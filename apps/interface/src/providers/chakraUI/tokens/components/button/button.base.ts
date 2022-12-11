@@ -8,10 +8,10 @@ const base = {
   justifyContent: 'center',
   gap: '4px',
   _disabled: {
-    cursor: 'default'
+    cursor: 'default',
   },
   _hover: {},
-  _focus: {}
+  _focus: {},
 }
 
 export default base

@@ -1,5 +1,3 @@
-
-
 const defaultProps = {
   variant: 'primary',
   size: 'base',

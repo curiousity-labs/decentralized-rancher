@@ -1,1 +1,1 @@
-export * from './goerli';
+export * from './goerli'

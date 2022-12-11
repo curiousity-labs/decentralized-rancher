@@ -1,12 +1,12 @@
-import { NFTMonsterSpecies, NFTMonsterStats, NFTMonsterType } from './monsters';
+import { NFTMonsterSpecies, NFTMonsterStats, NFTMonsterType } from './monsters'
 export interface NFTMonsterAbilities {
-  excludedSpecies: NFTMonsterSpecies[],
-  excludedTypes: NFTMonsterType[],
-  statBonuses: NFTMonsterStats,
-  description: string,
-  action: () => void,
+  excludedSpecies: NFTMonsterSpecies[]
+  excludedTypes: NFTMonsterType[]
+  statBonuses: NFTMonsterStats
+  description: string
+  action: () => void
 }
 
-export interface NFTMonsterPassiveAbility extends NFTMonsterAbilities {}
+export type NFTMonsterPassiveAbility = NFTMonsterAbilities
 
-export interface NFTMonsterActiveAbility extends NFTMonsterAbilities {}
+export type NFTMonsterActiveAbility = NFTMonsterAbilities
